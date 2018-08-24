@@ -9,6 +9,7 @@ use yii\web\AssetBundle;
  */
 class AppAsset extends AssetBundle
 {
+
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
@@ -19,5 +20,7 @@ class AppAsset extends AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
+        'yiister\adminlte\assets\Asset',
     ];
+
 }
