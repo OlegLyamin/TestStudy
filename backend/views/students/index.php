@@ -17,8 +17,13 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
             <p>
-                <?= Html::a(Yii::t('students', 'Create Students'), ['create'], ['class' => 'btn btn-success']) ?>
-            </p>
+            <div class="form-group" style="float: right">
+                <?= Html::a('<i class="fa fa-eraser"></i> '.Yii::t('app', 'Reset'),
+                    ['index'],[ 'class' => 'btn btn-default',
+                        'onclick'=>"document.getElementById('p0').reset()" ]) ?>
+            </div>
+                <?= Html::a('<i class="fa fa-user-plus"></i> '.Yii::t('students',
+                            'Create Students'), ['create'], ['class' => 'btn btn-success'])?>            </p>
 
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
@@ -33,9 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'name',
                     'surName',
                     'student_group_id',
-                    'course_id',
-                    //'created_at',
-                    //'updated_at',
+
 
                     [
                         'class' => 'yii\grid\ActionColumn',
@@ -47,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             },
                             'update' => function ($url,$model) {
                                 return Html::a('<span class="label label-warning"><i class="fa fa-pencil"></i></span>',
-                                    $url,['title' => Yii::t('expeditors', 'Update')]);
+                                    $url,['title' => Yii::t('app', 'Update')]);
                             },
                         ],
                     ]

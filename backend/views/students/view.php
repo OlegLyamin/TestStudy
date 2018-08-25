@@ -30,14 +30,19 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
                 <p>
-                    <?= Html::a(Yii::t('students', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-                    <?= Html::a(Yii::t('students', 'Delete'), ['delete', 'id' => $model->id], [
-                        'class' => 'btn btn-danger',
-                        'data' => [
-                            'confirm' => Yii::t('students', 'Are you sure you want to delete this item?'),
-                            'method' => 'post',
-                        ],
-                    ]) ?>
+                    <?=  Html::a('<i class="fa fa-pencil"></i> '.Yii::t('app',
+                                'Update'),
+                            ['update', 'id' => $model->id], ['class' => 'btn btn-primary'])?>
+
+                    <?= Html::a('<i class="fa fa-user-times"></i> '.Yii::t('app',
+                                'Delete'),
+                            ['delete', 'id' => $model->id], [
+                                'class' => 'btn btn-danger',
+                                'data' => [
+                                    'confirm' => Yii::t('students',
+                                        'Are you sure you want to delete this student?')
+                                ],
+                            ])?>
                 </p>
             </div>
         </div>
