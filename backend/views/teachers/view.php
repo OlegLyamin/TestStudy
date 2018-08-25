@@ -11,19 +11,10 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('teachers', 'Teachers'), 'ur
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="teachers-view">
+    <div class="box box-danger">
+        <div class="box-header">
+            <div class="col-xs-6">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a(Yii::t('teachers', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('teachers', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('teachers', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
 
     <?= DetailView::widget([
         'model' => $model,
@@ -35,5 +26,21 @@ $this->params['breadcrumbs'][] = $this->title;
             'updated_at',
         ],
     ]) ?>
+                <p>
+                    <?=  Html::a('<i class="fa fa-pencil"></i> '.Yii::t('app',
+                            'Update'),
+                        ['update', 'id' => $model->id], ['class' => 'btn btn-primary'])?>
 
+                    <?= Html::a('<i class="fa fa-user-times"></i> '.Yii::t('app',
+                            'Delete'),
+                        ['delete', 'id' => $model->id], [
+                            'class' => 'btn btn-danger',
+                            'data' => [
+                                'confirm' => Yii::t('teachers',
+                                    'Are you sure you want to delete this student?')
+                            ],
+                        ])?>
+                </p>
+            </div>
+        </div>
 </div>

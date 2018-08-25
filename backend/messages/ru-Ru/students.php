@@ -14,6 +14,4 @@ return [
     'Student Group ID' => 'Номер группы',
     'Course ID' => 'Курс',
     'Update Students: {name}' => 'Изменение студента: {name}',
-
-
-];
+    ];

@@ -31,7 +31,7 @@
 
                             ],
                             [
-                                'label' => Yii::t('Teacher', 'teacher'),
+                                'label' => Yii::t('teachers', 'Teachers'),
                                 'icon' => 'users',
                                 'url' => ['teachers/index', 'action' => 'index'],
 
