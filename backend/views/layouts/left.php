@@ -19,13 +19,13 @@
 
                             ],
                             [
-                                'label' => Yii::t('course', 'Course'),
+                                'label' => Yii::t('course', 'Courses'),
                                 'icon' => 'list',
                                 'url' => ['course/index', 'action' => 'index'],
 
                             ],
                             [
-                                'label' => Yii::t('group', 'Group'),
+                                'label' => Yii::t('student_group', 'Group'),
                                 'icon' => 'list-ol',
                                 'url' => ['student-group/index', 'action' => 'index'],
 

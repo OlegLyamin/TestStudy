@@ -45,8 +45,8 @@ class Course extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('course', 'ID'),
             'course' => Yii::t('course', 'Course'),
-            'created_at' => Yii::t('course', 'Created At'),
-            'updated_at' => Yii::t('course', 'Updated At'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
 

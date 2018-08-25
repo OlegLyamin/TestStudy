@@ -23,7 +23,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         'onclick'=>"document.getElementById('p0').reset()" ]) ?>
             </div>
                 <?= Html::a('<i class="fa fa-user-plus"></i> '.Yii::t('students',
-                            'Create Students'), ['create'], ['class' => 'btn btn-success'])?>            </p>
+                            'Create Students'), ['create'], ['class' => 'btn btn-success'])?>
+            </p>
 
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,

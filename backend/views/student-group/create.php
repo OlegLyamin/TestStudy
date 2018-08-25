@@ -11,9 +11,6 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('student_group', 'Student Gr
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="student-group-create">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>

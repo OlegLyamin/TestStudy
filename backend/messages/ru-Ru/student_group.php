@@ -3,11 +3,12 @@
  * Created by PhpStorm.
  * User: mrlya
  * Date: 25.08.2018
- * Time: 12:54
+ * Time: 17:22
  */
 return [
-    'Courses' => 'Курсы',
-    'Create Course' => 'Добавить курс',
+    'Student Groups' => 'Группа',
+    'Group' => 'Группа',
+    'Create Student Group' => 'Добавить группу',
     'ID' => 'Номер студента',
     'Course' => 'Курс',
     'Update Courses: {course}' => 'Изменение студента: {name}',

@@ -13,8 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="students-view">
     <div class="box box-danger">
         <div class="box-header">
-
-
             <div class="col-xs-6">
 
     <?= DetailView::widget([

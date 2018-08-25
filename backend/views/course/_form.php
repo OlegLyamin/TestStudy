@@ -9,19 +9,22 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="course-form">
+    <div class="box box-danger">
+        <div class="box-header">
 
     <?php $form = ActiveForm::begin(); ?>
+            <div class="col-xs-6">
 
     <?= $form->field($model, 'course')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
-
-    <div class="form-group">
-        <?= Html::submitButton(Yii::t('course', 'Save'), ['class' => 'btn btn-success']) ?>
-    </div>
+                <div class="form-group">
+                    <?= Html::submitButton('<i class="fa fa-floppy-o"></i> '.Yii::t('app',
+                            'Save'),['class' => 'btn btn-success'])?>
+                </div>
+            </div>
 
     <?php ActiveForm::end(); ?>
 
+</div>
+    </div>
 </div>
