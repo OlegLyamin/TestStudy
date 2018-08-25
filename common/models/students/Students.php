@@ -5,7 +5,9 @@ namespace common\models\students;
 use common\models\course\Course;
 use common\models\student_group\StudentGroup;
 use common\models\studentsGroupCourseWithTeacher\StudentsGroupCourseWithTeacher;
+use DateTime;
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "{{%students}}".
@@ -31,7 +33,15 @@ class Students extends \yii\db\ActiveRecord
     {
         return '{{%students}}';
     }
-
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'value' => $this->currentDateTimestamp(),
+            ],
+        ];
+    }
     /**
      * {@inheritdoc}
      */
@@ -84,6 +94,15 @@ class Students extends \yii\db\ActiveRecord
     public function getStudentsGroupCourseWithTeachers()
     {
         return $this->hasMany(StudentsGroupCourseWithTeacher::className(), ['student_id' => 'id']);
+    }
+    public function currentDateTimestamp($date = null){
+        $dateTime = null;
+        if (is_null($date)){
+            $dateTime = new DateTime(date('d.m.Y'));
+        } else {
+            $dateTime = new DateTime($date);
+        }
+        return $dateTime->format('U');
     }
 
     /**

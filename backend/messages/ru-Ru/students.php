@@ -8,7 +8,7 @@
 return [
     'Students' => 'Студенты',
     'Create Students' => 'Добавить студента',
-    'ID' => 'Номер студента',
+    'ID' => 'Номер',
     'Name' => 'Имя',
     'Sur Name' => 'Фамилия',
     'Student Group ID' => 'Номер группы',

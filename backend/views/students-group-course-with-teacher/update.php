@@ -14,8 +14,6 @@ $this->params['breadcrumbs'][] = Yii::t('studentsGroupCourseWithTeacher', 'Updat
 ?>
 <div class="students-group-course-with-teacher-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>

@@ -23,8 +23,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'course',
-            'created_at',
-            'updated_at',
+            [
+                'attribute' => 'created_at',
+                'value' => function ($model) {
+                    return date('d-m-Y ', $model->created_at);
+                },
+            ],
+            [
+                'attribute' => 'updated_at',
+                'value' => function ($model) {
+                    return date('d-m-Y', $model->updated_at);
+                },
+            ],
         ],
     ]) ?>
                 <p>

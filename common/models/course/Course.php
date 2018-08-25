@@ -3,7 +3,9 @@
 namespace common\models\course;
 
 use common\models\students\Students;
+use DateTime;
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "{{%course}}".
@@ -24,7 +26,15 @@ class Course extends \yii\db\ActiveRecord
     {
         return '{{%course}}';
     }
-
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'value' => $this->currentDateTimestamp(),
+            ],
+        ];
+    }
     /**
      * {@inheritdoc}
      */
@@ -57,7 +67,15 @@ class Course extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Students::className(), ['course_id' => 'id']);
     }
-
+    public function currentDateTimestamp($date = null){
+        $dateTime = null;
+        if (is_null($date)){
+            $dateTime = new DateTime(date('d.m.Y'));
+        } else {
+            $dateTime = new DateTime($date);
+        }
+        return $dateTime->format('U');
+    }
     /**
      * {@inheritdoc}
      * @return \common\models\course\query\CourseQuery the active query used by this AR class.

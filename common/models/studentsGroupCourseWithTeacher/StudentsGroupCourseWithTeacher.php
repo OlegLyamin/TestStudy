@@ -4,7 +4,9 @@ namespace common\models\studentsGroupCourseWithTeacher;
 
 use common\models\students\Students;
 use common\models\teachers\Teachers;
+use DateTime;
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "{{%students_group_course_with_teacher}}".
@@ -27,7 +29,15 @@ class StudentsGroupCourseWithTeacher extends \yii\db\ActiveRecord
     {
         return '{{%students_group_course_with_teacher}}';
     }
-
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'value' => $this->currentDateTimestamp(),
+            ],
+        ];
+    }
     /**
      * {@inheritdoc}
      */
@@ -50,8 +60,8 @@ class StudentsGroupCourseWithTeacher extends \yii\db\ActiveRecord
             'id' => Yii::t('studentsGroupCourseWithTeacher', 'ID'),
             'student_id' => Yii::t('studentsGroupCourseWithTeacher', 'Student ID'),
             'teacher_id' => Yii::t('studentsGroupCourseWithTeacher', 'Teacher ID'),
-            'created_at' => Yii::t('studentsGroupCourseWithTeacher', 'Created At'),
-            'updated_at' => Yii::t('studentsGroupCourseWithTeacher', 'Updated At'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
 
@@ -70,7 +80,15 @@ class StudentsGroupCourseWithTeacher extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Teachers::className(), ['id' => 'teacher_id']);
     }
-
+    public function currentDateTimestamp($date = null){
+        $dateTime = null;
+        if (is_null($date)){
+            $dateTime = new DateTime(date('d.m.Y'));
+        } else {
+            $dateTime = new DateTime($date);
+        }
+        return $dateTime->format('U');
+    }
     /**
      * {@inheritdoc}
      * @return \common\models\studentsGroupCourseWithTeacher\query\StudentsGroupCourseWithTeacherQuery the active query used by this AR class.

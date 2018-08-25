@@ -6,10 +6,10 @@
  * Time: 17:22
  */
 return [
-    'Student Groups' => 'Группа',
+    'Student Groups' => 'Группы',
     'Group' => 'Группа',
     'Create Student Group' => 'Добавить группу',
-    'ID' => 'Номер студента',
+    'ID' => 'Номер',
     'Course' => 'Курс',
     'Update Courses: {course}' => 'Изменение студента: {name}',
 

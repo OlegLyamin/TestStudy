@@ -3,7 +3,9 @@
 namespace common\models\student_group;
 
 use common\models\students\Students;
+use DateTime;
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "{{%student_group}}".
@@ -24,7 +26,15 @@ class StudentGroup extends \yii\db\ActiveRecord
     {
         return '{{%student_group}}';
     }
-
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'value' => $this->currentDateTimestamp(),
+            ],
+        ];
+    }
     /**
      * {@inheritdoc}
      */
@@ -57,7 +67,15 @@ class StudentGroup extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Students::className(), ['student_group_id' => 'id']);
     }
-
+    public function currentDateTimestamp($date = null){
+        $dateTime = null;
+        if (is_null($date)){
+            $dateTime = new DateTime(date('d.m.Y'));
+        } else {
+            $dateTime = new DateTime($date);
+        }
+        return $dateTime->format('U');
+    }
     /**
      * {@inheritdoc}
      * @return \common\models\student_group\query\StudentGroupQuery the active query used by this AR class.

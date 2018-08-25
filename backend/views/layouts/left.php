@@ -25,7 +25,7 @@
 
                             ],
                             [
-                                'label' => Yii::t('student_group', 'Group'),
+                                'label' => Yii::t('student_group', 'Student Groups'),
                                 'icon' => 'list-ol',
                                 'url' => ['student-group/index', 'action' => 'index'],
 
