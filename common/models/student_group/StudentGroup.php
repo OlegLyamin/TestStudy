@@ -2,6 +2,7 @@
 
 namespace common\models\student_group;
 
+use common\models\students\Students;
 use Yii;
 
 /**

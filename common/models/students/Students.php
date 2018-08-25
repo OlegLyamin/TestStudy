@@ -2,6 +2,9 @@
 
 namespace common\models\students;
 
+use common\models\course\Course;
+use common\models\student_group\StudentGroup;
+use common\models\studentsGroupCourseWithTeacher\StudentsGroupCourseWithTeacher;
 use Yii;
 
 /**

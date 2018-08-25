@@ -2,6 +2,7 @@
 
 namespace common\models\teachers;
 
+use common\models\studentsGroupCourseWithTeacher\StudentsGroupCourseWithTeacher;
 use Yii;
 
 /**

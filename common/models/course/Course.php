@@ -2,6 +2,7 @@
 
 namespace common\models\course;
 
+use common\models\students\Students;
 use Yii;
 
 /**
