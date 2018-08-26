@@ -22,8 +22,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['index'],[ 'class' => 'btn btn-default',
                         'onclick'=>"document.getElementById('p0').reset()" ]) ?>
             </div>
-            <?= Html::a('<i class="fa fa-user-plus"></i> '.Yii::t('students',
-                    'Create Students'), ['create'], ['class' => 'btn btn-success'])?>
+            <?= Html::a('<i class="fa fa-plus"></i> '.Yii::t('studentsGroupCourseWithTeacher',
+                    'Create StudentsGroupCourseWithTeacher'), ['create'], ['class' => 'btn btn-success'])?>
             </p>
 
     <?= GridView::widget([
@@ -33,9 +33,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'tableOptions' => [
             'class' => 'table table-hover table-responsive table-condensed text-center'],
         'columns' => [
-            'id',
             'student_id',
             'teacher_id',
+            'course_id',
+            'status_id',
+
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {update} {link}',

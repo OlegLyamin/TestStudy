@@ -18,7 +18,9 @@ class StudentsGroupCourseWithTeacherSearch extends StudentsGroupCourseWithTeache
     public function rules()
     {
         return [
-            [['id', 'student_id', 'teacher_id', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'student_id', 'teacher_id', 'course_id', 'created_at', 'updated_at','status_id'], 'integer'],
+
+
         ];
     }
 
@@ -61,8 +63,10 @@ class StudentsGroupCourseWithTeacherSearch extends StudentsGroupCourseWithTeache
             'id' => $this->id,
             'student_id' => $this->student_id,
             'teacher_id' => $this->teacher_id,
+            'course_id' => $this->course_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'status_id' => $this->status
         ]);
 
         return $dataProvider;

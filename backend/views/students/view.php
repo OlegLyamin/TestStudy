@@ -21,8 +21,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'name',
             'surName',
-            'student_group_id',
-            'course_id',
+//            'student_group_id',
+//            'course_id',
+            [
+                'attribute' =>'studentGroupTitle',
+                'content' => function ($data) {
+                    $studentGroupTitle = Html::a($data->studentGroupTitle,
+                        Url::to(['student-group/view', 'id' => $data->id]));
+                    return $studentGroupTitle;                            }
+
+            ],
+
             [
                 'attribute' => 'created_at',
                 'value' => function ($model) {

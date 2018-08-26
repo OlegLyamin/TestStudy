@@ -16,7 +16,6 @@ use yii\behaviors\TimestampBehavior;
  * @property string $name
  * @property string $surName
  * @property int $student_group_id
- * @property int $course_id
  * @property int $created_at
  * @property int $updated_at
  *
@@ -48,10 +47,9 @@ class Students extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'surName', 'student_group_id', 'course_id'], 'required'],
-            [['student_group_id', 'course_id', 'created_at', 'updated_at'], 'integer'],
+            [['name', 'surName', 'student_group_id'], 'required'],
+            [['student_group_id', 'created_at', 'updated_at'], 'integer'],
             [['name', 'surName'], 'string', 'max' => 32],
-            [['course_id'], 'exist', 'skipOnError' => true, 'targetClass' => Course::className(), 'targetAttribute' => ['course_id' => 'id']],
             [['student_group_id'], 'exist', 'skipOnError' => true, 'targetClass' => StudentGroup::className(), 'targetAttribute' => ['student_group_id' => 'id']],
         ];
     }
@@ -66,19 +64,16 @@ class Students extends \yii\db\ActiveRecord
             'name' => Yii::t('students', 'Name'),
             'surName' => Yii::t('students', 'Sur Name'),
             'student_group_id' => Yii::t('students', 'Student Group ID'),
-            'course_id' => Yii::t('students', 'Course ID'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+            'studentsGroupTitle' => Yii::t('students', 'Student Group Title'),
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCourse()
-    {
-        return $this->hasOne(Course::className(), ['id' => 'course_id']);
-    }
+
 
     /**
      * @return \yii\db\ActiveQuery
@@ -94,6 +89,11 @@ class Students extends \yii\db\ActiveRecord
     public function getStudentsGroupCourseWithTeachers()
     {
         return $this->hasMany(StudentsGroupCourseWithTeacher::className(), ['student_id' => 'id']);
+    }
+
+
+    public function getStudentGroupTitle(){
+        return $this->studentGroup->group;
     }
     public function currentDateTimestamp($date = null){
         $dateTime = null;

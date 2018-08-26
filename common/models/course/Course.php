@@ -3,6 +3,7 @@
 namespace common\models\course;
 
 use common\models\students\Students;
+use common\models\studentsGroupCourseWithTeacher\StudentsGroupCourseWithTeacher;
 use DateTime;
 use Yii;
 use yii\behaviors\TimestampBehavior;
@@ -63,9 +64,9 @@ class Course extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getStudents()
+    public function getStudentsGroupCourseWithTeachers()
     {
-        return $this->hasMany(Students::className(), ['course_id' => 'id']);
+        return $this->hasMany(StudentsGroupCourseWithTeacher::className(), ['course_id' => 'id']);
     }
     public function currentDateTimestamp($date = null){
         $dateTime = null;

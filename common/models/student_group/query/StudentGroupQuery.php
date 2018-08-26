@@ -31,4 +31,7 @@ class StudentGroupQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+    public function getGroup(){
+        return $this->select(['group','id'])->indexBy('id')->column();
+    }
 }

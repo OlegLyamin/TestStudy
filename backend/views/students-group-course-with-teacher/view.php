@@ -21,6 +21,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'student_id',
             'teacher_id',
+            'course_id',
+            'status_id',
             [
                 'attribute' => 'created_at',
                 'value' => function ($model) {

@@ -10,6 +10,7 @@ return [
     'ID' => 'Номер',
     'Student ID' => 'Студент',
     'Teacher ID' => 'Преподаватель',
+    'Create StudentsGroupCourseWithTeacher' => 'Назначить курсы'
 
 
 ];

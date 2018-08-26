@@ -31,4 +31,8 @@ class CourseQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+    public function getCourse(){
+
+        return $this->select(['course', 'id'])->indexBy('id')->column();
+    }
 }

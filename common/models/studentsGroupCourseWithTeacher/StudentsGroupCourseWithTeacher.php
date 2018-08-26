@@ -2,11 +2,10 @@
 
 namespace common\models\studentsGroupCourseWithTeacher;
 
+use common\models\course\Course;
 use common\models\students\Students;
 use common\models\teachers\Teachers;
-use DateTime;
 use Yii;
-use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "{{%students_group_course_with_teacher}}".
@@ -16,7 +15,11 @@ use yii\behaviors\TimestampBehavior;
  * @property int $teacher_id
  * @property int $created_at
  * @property int $updated_at
+ * @property int $course_id
+ * @property int $status_id
  *
+ * @property Course $course
+ * @property StatusSGCWT $status
  * @property Students $student
  * @property Teachers $teacher
  */
@@ -29,15 +32,7 @@ class StudentsGroupCourseWithTeacher extends \yii\db\ActiveRecord
     {
         return '{{%students_group_course_with_teacher}}';
     }
-    public function behaviors()
-    {
-        return [
-            [
-                'class' => TimestampBehavior::className(),
-                'value' => $this->currentDateTimestamp(),
-            ],
-        ];
-    }
+
     /**
      * {@inheritdoc}
      */
@@ -45,7 +40,9 @@ class StudentsGroupCourseWithTeacher extends \yii\db\ActiveRecord
     {
         return [
             [['student_id', 'teacher_id'], 'required'],
-            [['student_id', 'teacher_id', 'created_at', 'updated_at'], 'integer'],
+            [['student_id', 'teacher_id', 'created_at', 'updated_at', 'course_id', 'status_id'], 'integer'],
+            [['course_id'], 'exist', 'skipOnError' => true, 'targetClass' => Course::className(), 'targetAttribute' => ['course_id' => 'id']],
+            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => StatusSGCWT::className(), 'targetAttribute' => ['status_id' => 'id']],
             [['student_id'], 'exist', 'skipOnError' => true, 'targetClass' => Students::className(), 'targetAttribute' => ['student_id' => 'id']],
             [['teacher_id'], 'exist', 'skipOnError' => true, 'targetClass' => Teachers::className(), 'targetAttribute' => ['teacher_id' => 'id']],
         ];
@@ -60,9 +57,27 @@ class StudentsGroupCourseWithTeacher extends \yii\db\ActiveRecord
             'id' => Yii::t('studentsGroupCourseWithTeacher', 'ID'),
             'student_id' => Yii::t('studentsGroupCourseWithTeacher', 'Student ID'),
             'teacher_id' => Yii::t('studentsGroupCourseWithTeacher', 'Teacher ID'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
+            'created_at' => Yii::t('studentsGroupCourseWithTeacher', 'Created At'),
+            'updated_at' => Yii::t('studentsGroupCourseWithTeacher', 'Updated At'),
+            'course_id' => Yii::t('studentsGroupCourseWithTeacher', 'Course ID'),
+            'status_id' => Yii::t('studentsGroupCourseWithTeacher', 'Status ID'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCourse()
+    {
+        return $this->hasOne(Course::className(), ['id' => 'course_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStatus()
+    {
+        return $this->hasOne(StatusSGCWT::className(), ['id' => 'status_id']);
     }
 
     /**
@@ -80,15 +95,7 @@ class StudentsGroupCourseWithTeacher extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Teachers::className(), ['id' => 'teacher_id']);
     }
-    public function currentDateTimestamp($date = null){
-        $dateTime = null;
-        if (is_null($date)){
-            $dateTime = new DateTime(date('d.m.Y'));
-        } else {
-            $dateTime = new DateTime($date);
-        }
-        return $dateTime->format('U');
-    }
+
     /**
      * {@inheritdoc}
      * @return \common\models\studentsGroupCourseWithTeacher\query\StudentsGroupCourseWithTeacherQuery the active query used by this AR class.

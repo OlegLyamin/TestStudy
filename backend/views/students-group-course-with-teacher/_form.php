@@ -18,6 +18,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'teacher_id')->textInput() ?>
 
+    <?= $form->field($model, 'course_id')->textInput() ?>
+    <?= $form->field($model, 'status_id')->textInput() ?>
+
+
 
                 <div class="form-group">
                     <?= Html::submitButton('<i class="fa fa-floppy-o"></i> '.Yii::t('app',
