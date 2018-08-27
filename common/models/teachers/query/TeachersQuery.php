@@ -31,4 +31,7 @@ class TeachersQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+    public function getSurName(){
+        return $this->select(['surName','id'])->indexBy('id')->column();
+    }
 }

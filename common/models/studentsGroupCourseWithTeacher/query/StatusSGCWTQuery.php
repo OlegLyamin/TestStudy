@@ -31,4 +31,7 @@ class StatusSGCWTQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+    public function getStatusSGCWT(){
+        return $this->select(['title','id'])->indexBy('id')->column();
+    }
 }

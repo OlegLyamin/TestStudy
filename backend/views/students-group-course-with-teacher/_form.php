@@ -59,9 +59,6 @@ use yii\widgets\ActiveForm;
                         ]);
                 ?>
 
-
-
-
                 <div class="form-group">
                     <?= Html::submitButton('<i class="fa fa-floppy-o"></i> '.Yii::t('app',
                             'Save'),['class' => 'btn btn-success'])?>

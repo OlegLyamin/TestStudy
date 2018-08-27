@@ -18,7 +18,9 @@ class StudentsGroupCourseWithTeacherSearch extends StudentsGroupCourseWithTeache
     public function rules()
     {
         return [
-            [['id', 'student_id', 'teacher_id', 'course_id', 'created_at', 'updated_at','status_id'], 'integer'],
+            [['id', 'created_at', 'updated_at'], 'integer'],
+            [['student_id', 'teacher_id', 'course_id','status_id'], 'safe'],
+
 
 
         ];
@@ -59,15 +61,30 @@ class StudentsGroupCourseWithTeacherSearch extends StudentsGroupCourseWithTeache
         }
 
         // grid filtering conditions
+        $query -> joinWith('student');
+        $query -> joinWith('teacher');
+        $query -> joinWith('course');
+        $query -> joinWith('statusSGCWT');
+
+
+
         $query->andFilterWhere([
             'id' => $this->id,
-            'student_id' => $this->student_id,
-            'teacher_id' => $this->teacher_id,
-            'course_id' => $this->course_id,
+//            'student_id' => $this->student_id,
+//            'teacher_id' => $this->teacher_id,
+//            'course_id' => $this->course_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'status_id' => $this->status
+//            'status_id' => $this->status
         ]);
+        $query->andFilterWhere(['like', 'students.surName', $this->student_id]);;
+        $query->andFilterWhere(['like', 'teachers.surName', $this->teacher_id]);;
+        $query->andFilterWhere(['like', 'course.course', $this->course_id]);;
+        $query->andFilterWhere(['like', 'statusSGCWT.title', $this->status_id]);;
+
+
+
+
 
         return $dataProvider;
     }

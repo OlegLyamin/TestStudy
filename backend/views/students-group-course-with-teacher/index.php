@@ -33,11 +33,23 @@ $this->params['breadcrumbs'][] = $this->title;
         'tableOptions' => [
             'class' => 'table table-hover table-responsive table-condensed text-center'],
         'columns' => [
-            'student_id',
-            'teacher_id',
-            'course_id',
-            'status_id',
+            [
+                'attribute' => 'student_id',
+                'value' => 'student.surName'
+            ],
+            [
+                'attribute' => 'teacher_id',
+                'value' => 'teacher.surName'
+            ],
 
+            [
+                'attribute' => 'course_id',
+                'value' => 'course.course'
+            ],
+            [
+                'attribute' => 'status_id',
+                'value' => 'statusSGCWT.title'
+            ],
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {update} {link}',

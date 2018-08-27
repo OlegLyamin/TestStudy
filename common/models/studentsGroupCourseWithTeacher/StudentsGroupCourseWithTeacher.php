@@ -75,7 +75,7 @@ class StudentsGroupCourseWithTeacher extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getStatus()
+    public function getStatusSGCWT()
     {
         return $this->hasOne(StatusSGCWT::className(), ['id' => 'status_id']);
     }
@@ -95,7 +95,15 @@ class StudentsGroupCourseWithTeacher extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Teachers::className(), ['id' => 'teacher_id']);
     }
-
+    public function getStudentSurname(){
+        return $this->student->surName;
+    }
+    public function getTeacherSurname(){
+        return $this->teacher->surName;
+    }
+//    public function getStatusSGCWT(){
+//        return $this->status->title;
+//    }
     /**
      * {@inheritdoc}
      * @return \common\models\studentsGroupCourseWithTeacher\query\StudentsGroupCourseWithTeacherQuery the active query used by this AR class.
