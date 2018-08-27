@@ -12,6 +12,8 @@ use common\models\studentsGroupCourseWithTeacher\StudentsGroupCourseWithTeacher;
  */
 class StudentsGroupCourseWithTeacherSearch extends StudentsGroupCourseWithTeacher
 {
+    const SECONDS_IN_DAY = 86400;
+
     /**
      * {@inheritdoc}
      */
@@ -19,7 +21,7 @@ class StudentsGroupCourseWithTeacherSearch extends StudentsGroupCourseWithTeache
     {
         return [
             [['id', 'created_at', 'updated_at'], 'integer'],
-            [['student_id', 'teacher_id', 'course_id','status_id'], 'safe'],
+            [['student_id', 'teacher_id', 'course_id','status_id','deadline','date_of_issue'], 'safe'],
 
 
 
@@ -50,15 +52,15 @@ class StudentsGroupCourseWithTeacherSearch extends StudentsGroupCourseWithTeache
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'forcePageParam' => false,
+                'pageSizeParam' => false,
+                'pageSize' => 10
+            ]
         ]);
 
         $this->load($params);
 
-        if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
-            return $dataProvider;
-        }
 
         // grid filtering conditions
         $query -> joinWith('student');
@@ -68,8 +70,11 @@ class StudentsGroupCourseWithTeacherSearch extends StudentsGroupCourseWithTeache
 
 
 
+
+
         $query->andFilterWhere([
             'id' => $this->id,
+
 //            'student_id' => $this->student_id,
 //            'teacher_id' => $this->teacher_id,
 //            'course_id' => $this->course_id,
@@ -81,6 +86,29 @@ class StudentsGroupCourseWithTeacherSearch extends StudentsGroupCourseWithTeache
         $query->andFilterWhere(['like', 'teachers.surName', $this->teacher_id]);;
         $query->andFilterWhere(['like', 'course.course', $this->course_id]);;
         $query->andFilterWhere(['like', 'statusSGCWT.title', $this->status_id]);;
+//        $query->andFilterWhere(['like', 'deadlineView', $this->deadline]);;
+        if ($this->deadline) {
+            $query->andFilterWhere(['=', 'deadline',
+                substr($this->currentDateTimestamp($this->deadline), 0, -4)]);
+        }
+        if ($this->date_of_issue) {
+            $query->andFilterWhere(['=', 'date_of_issue',
+                substr($this->currentDateTimestamp($this->date_of_issue), 0, -4)]);
+        }
+
+//        if ($this->date_of_issue) {
+//            $query->andFilterWhere(['=', 'dateOfIssue',
+//                substr($this->currentDateTimestamp($this->dateOfIssue), 0, -4)]);
+//        }
+
+
+
+//        if ($this->birthDate) {
+//            $query->andFilterWhere(['like', 'birthDate', parent::currentDateTimestamp($this->birthDate)]);
+//        }
+
+
+
 
 
 

@@ -6,7 +6,11 @@ use common\models\course\Course;
 use common\models\students\Students;
 use common\models\teachers\Teachers;
 use common\models\studentsGroupCourseWithTeacher\StatusSGCWT;
+use DateTime;
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
+use common\behaviors\DateToTimeBehavior;
 
 /**
  * This is the model class for table "{{%students_group_course_with_teacher}}".
@@ -18,6 +22,9 @@ use Yii;
  * @property int $updated_at
  * @property int $course_id
  * @property int $status_id
+ * @property int $deadline
+ * @property int $date_of_issue
+
  *
  * @property Course $course
  * @property StatusSGCWT $status
@@ -26,6 +33,9 @@ use Yii;
  */
 class StudentsGroupCourseWithTeacher extends \yii\db\ActiveRecord
 {
+    public $deadlineView;
+    public $dateOfIssueView;
+
     /**
      * {@inheritdoc}
      */
@@ -33,15 +43,43 @@ class StudentsGroupCourseWithTeacher extends \yii\db\ActiveRecord
     {
         return '{{%students_group_course_with_teacher}}';
     }
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'value' => $this->currentDateTimestamp(),
+            ],
+            [
+                'class' => DateToTimeBehavior::className(),
+                'attributes' => [
 
+                    ActiveRecord::EVENT_AFTER_FIND => 'deadlineView'
+                ],
+                'timeAttribute' => 'deadline',
+            ],
+            [
+                'class' => DateToTimeBehavior::className(),
+                'attributes' => [
+
+                    ActiveRecord::EVENT_AFTER_FIND => 'dateOfIssueView',
+                ],
+                'timeAttribute' => 'date_of_issue',
+            ],
+        ];
+    }
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['student_id', 'teacher_id'], 'required'],
-            [['student_id', 'teacher_id', 'created_at', 'updated_at', 'course_id', 'status_id'], 'integer'],
+            [['student_id', 'teacher_id','deadlineView','dateOfIssueView'], 'required'],
+            [['deadline', 'date_of_issue'], 'default', 'value' => null],
+            ['deadlineView', 'date', 'format' => 'php:d.m.Y'],
+            ['dateOfIssueView', 'date', 'format' => 'php:d.m.Y'],
+
+            [['student_id', 'teacher_id', 'created_at', 'updated_at', 'course_id', 'status_id','deadline','date_of_issue'], 'integer'],
             [['course_id'], 'exist', 'skipOnError' => true, 'targetClass' => Course::className(), 'targetAttribute' => ['course_id' => 'id']],
             [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => StatusSGCWT::className(), 'targetAttribute' => ['status_id' => 'id']],
             [['student_id'], 'exist', 'skipOnError' => true, 'targetClass' => Students::className(), 'targetAttribute' => ['student_id' => 'id']],
@@ -66,6 +104,13 @@ class StudentsGroupCourseWithTeacher extends \yii\db\ActiveRecord
             'title' => Yii::t('studentsGroupCourseWithTeacher', 'Status Title'),
             'teacherSurname' => Yii::t('studentsGroupCourseWithTeacher', 'Status Title'),
             'courseCourse' => Yii::t('studentsGroupCourseWithTeacher', 'Course Course'),
+            'deadlineView' => Yii::t('studentsGroupCourseWithTeacher', 'Deadline'),
+            'deadline' => Yii::t('studentsGroupCourseWithTeacher', 'Deadline'),
+            'dateOfIssueView' => Yii::t('studentsGroupCourseWithTeacher', 'Date Of Issue View'),
+            'date_of_issue' => Yii::t('studentsGroupCourseWithTeacher', 'Date Of Issue'),
+            'studentsGroupCourseWithTeacher' => Yii::t('studentsGroupCourseWithTeacher', 'Students Group Course With Teachers'),
+
+
 
 
         ];
@@ -78,7 +123,14 @@ class StudentsGroupCourseWithTeacher extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Course::className(), ['id' => 'course_id']);
     }
-
+    public function getDeadline()
+    {
+        return date('d.m.Y', $this->deadlineView);
+    }
+    public function getDateOfIssue()
+    {
+        return date('d.m.Y', $this->dateOfIssueView);
+    }
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -122,6 +174,27 @@ class StudentsGroupCourseWithTeacher extends \yii\db\ActiveRecord
      * {@inheritdoc}
      * @return \common\models\studentsGroupCourseWithTeacher\query\StudentsGroupCourseWithTeacherQuery the active query used by this AR class.
      */
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+
+            $this->deadline = $this->currentDateTimestamp($this->deadlineView);
+            $this->date_of_issue = $this->currentDateTimestamp($this->dateOfIssueView);
+
+            return true;
+        }
+        return false;
+    }
+
+    public function currentDateTimestamp($date = null){
+        $dateTime = null;
+        if (is_null($date)){
+            $dateTime = new DateTime(date('d-m-Y'));
+        } else {
+            $dateTime = new DateTime($date);
+        }
+        return $dateTime->format('UTC');
+    }
     public static function find()
     {
         return new \common\models\studentsGroupCourseWithTeacher\query\StudentsGroupCourseWithTeacherQuery(get_called_class());

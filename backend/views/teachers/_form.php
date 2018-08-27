@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use kartik\form\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\teachers\Teachers */
@@ -15,9 +15,25 @@ use yii\widgets\ActiveForm;
 
             <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'name', [
+                        'feedbackIcon' => [
+                            'prefix' => 'fa fa-',
+                            'default' => 'user',
+                            'success' => 'user',
+                            'error' => 'user',
+                        ]
+                    ]
+                )->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'surName')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'surName', [
+                        'feedbackIcon' => [
+                            'prefix' => 'fa fa-',
+                            'default' => 'user',
+                            'success' => 'user',
+                            'error' => 'user',
+                        ]
+                    ]
+                )->textInput(['maxlength' => true]) ?>
 
                 <div class="form-group">
                     <?= Html::submitButton('<i class="fa fa-floppy-o"></i> '.Yii::t('app',

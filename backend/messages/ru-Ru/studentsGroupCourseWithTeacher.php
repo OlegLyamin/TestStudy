@@ -11,8 +11,13 @@ return [
     'Student ID' => 'Студент',
     'Course ID' => 'Курс',
     'Status ID' => 'Статус',
+    'Deadline' => 'Дата завершения',
+    'Date Of Issue' => 'Дата начала',
+    'Date Of Issue View' => 'Дата начала',
     'Teacher ID' => 'Преподаватель',
-    'Create StudentsGroupCourseWithTeacher' => 'Назначить курсы'
+    'Create StudentsGroupCourseWithTeacher' => 'Назначить курсы',
+    'Create Students Group Course With Teacher' => 'Назначение курсов',
+    'Students Group Course With Teachers' => 'Занятия'
 
 
 ];

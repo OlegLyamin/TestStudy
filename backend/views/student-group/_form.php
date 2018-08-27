@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use kartik\form\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\student_group\StudentGroup */
@@ -9,13 +9,22 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="student-group-form">
+
     <div class="box box-danger">
+
         <div class="box-header">
 
     <?php $form = ActiveForm::begin(); ?>
-    <div class="col-xs-6">
+    <div class="col-xs-4">
 
-    <?= $form->field($model, 'group')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'group', [
+            'feedbackIcon' => [
+                'prefix' => 'fa fa-',
+                'default' => 'group',
+                'success' => 'group',
+                'error' => 'group',]
+        ])
+            ->textInput(['maxlength' => true]) ?>
 
 
         <div class="form-group">
@@ -25,6 +34,7 @@ use yii\widgets\ActiveForm;
         </div>
 
     <?php ActiveForm::end(); ?>
-        </div>
+            </div>
+
 </div>
 </div>

@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['index'],[ 'class' => 'btn btn-default',
                 'onclick'=>"document.getElementById('p0').reset()" ]) ?>
     </div>
-    <?= Html::a('<i class="fa fa-user-plus"></i> '.Yii::t('course',
+    <?= Html::a('<i class="fa fa-plus"></i> '.Yii::t('course',
             'Create Course'), ['create'], ['class' => 'btn btn-success'])?>
     </p>
 
@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
 
 
-
+            'id',
             'course',
 
 

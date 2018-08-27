@@ -43,7 +43,7 @@ class StudentGroup extends \yii\db\ActiveRecord
         return [
             [['group'], 'required'],
             [['created_at', 'updated_at'], 'integer'],
-            [['group'], 'string', 'max' => 255],
+            [['group'], 'string', 'max' => 30],
         ];
     }
 

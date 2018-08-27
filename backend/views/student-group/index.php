@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['index'],[ 'class' => 'btn btn-default',
                 'onclick'=>"document.getElementById('p0').reset()" ]) ?>
     </div>
-    <?= Html::a('<i class="fa fa-user-plus"></i> '.Yii::t('student_group',
+    <?= Html::a('<i class="fa fa-plus"></i> '.Yii::t('student_group',
             'Create Student Group'), ['create'], ['class' => 'btn btn-success'])?>
     </p>
 
@@ -33,6 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'tableOptions' => [
             'class' => 'table table-hover table-responsive table-condensed text-center'],
         'columns' => [
+                'id',
 
             'group',
             [

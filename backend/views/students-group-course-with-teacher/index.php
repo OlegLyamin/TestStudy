@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use yii\helpers\ArrayHelper;
+use kartik\widgets\DatePicker;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\studentsGroupCourseWithTeacher\search\StudentsGroupCourseWithTeacherSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -29,10 +31,16 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'layout' => "{items}",
+        'options' => ['class' => 'pagination pagination-sm no-margin pull-right'],
+                        'layout'=>"{items}{pager}",
+
         'tableOptions' => [
             'class' => 'table table-hover table-responsive table-condensed text-center'],
+
         'columns' => [
+                'id',
+
+
             [
                 'attribute' => 'student_id',
                 'value' => 'student.surName'
@@ -48,8 +56,38 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'status_id',
-                'value' => 'statusSGCWT.title'
+                'value' => 'statusSGCWT.title',
+
             ],
+            [
+                'attribute' => 'date_of_issue',
+                'value' => 'dateOfIssueView',
+                'format' => 'date',
+                'filter' => DatePicker::widget(
+                    [
+                        'model' => $searchModel,
+                        'attribute' => 'date_of_issue',
+                        'options' => [
+                            'class' => 'form-control'
+                        ],
+                    ]
+                )
+            ],
+            [
+                'attribute' => 'deadline',
+                'value' => 'deadlineView',
+                'format' => 'date',
+                'filter' => DatePicker::widget(
+                    [
+                        'model' => $searchModel,
+                        'attribute' => 'deadline',
+                        'options' => [
+                            'class' => 'form-control'
+                        ],
+                    ]
+                )
+            ],
+
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {update} {link}',
