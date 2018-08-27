@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'tableOptions' => [
             'class' => 'table table-hover table-responsive table-condensed text-center'],
         'columns' => [
-            'id',
+
             'group',
             [
                 'class' => 'yii\grid\ActionColumn',

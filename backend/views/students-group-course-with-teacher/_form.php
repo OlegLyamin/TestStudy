@@ -1,5 +1,9 @@
 <?php
 
+use common\models\course\Course;
+use common\models\students\Students;
+use common\models\studentsGroupCourseWithTeacher\StatusSGCWT;
+use common\models\teachers\Teachers;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -14,12 +18,47 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
             <div class="col-xs-6">
-    <?= $form->field($model, 'student_id')->textInput() ?>
+                <?php
+                echo $form->field($model, 'student_id')
+                    ->widget(kartik\select2\Select2::className(),
+                        ['data' => \yii\helpers\ArrayHelper::map(Students::find()->All(),
+                            'id', 'surName'),
+                            'options' =>
+                                ['placeholder' => 'Выберите студента...'],
+                        ]);
+                ?>
 
-    <?= $form->field($model, 'teacher_id')->textInput() ?>
+                <?php
+                echo $form->field($model, 'teacher_id')
+                    ->widget(kartik\select2\Select2::className(),
+                        ['data' => \yii\helpers\ArrayHelper::map(Teachers::find()->All(),
+                            'id', 'surName'),
+                            'options' =>
+                                ['placeholder' => 'Выберите преподавателя...'],
+                        ]);
+                ?>
 
-    <?= $form->field($model, 'course_id')->textInput() ?>
-    <?= $form->field($model, 'status_id')->textInput() ?>
+
+                <?php
+                echo $form->field($model, 'course_id')
+                    ->widget(kartik\select2\Select2::className(),
+                        ['data' => \yii\helpers\ArrayHelper::map(Course::find()->All(),
+                            'id', 'course'),
+                            'options' =>
+                                ['placeholder' => 'Выберите курс...'],
+                        ]);
+                ?>
+
+                <?php
+                echo $form->field($model, 'status_id')
+                    ->widget(kartik\select2\Select2::className(),
+                        ['data' => \yii\helpers\ArrayHelper::map(StatusSGCWT::find()->All(),
+                            'id', 'title'),
+                            'options' =>
+                                ['placeholder' => 'Выберите статус...'],
+                        ]);
+                ?>
+
 
 
 
