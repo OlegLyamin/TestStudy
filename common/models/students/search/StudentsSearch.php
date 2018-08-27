@@ -19,7 +19,7 @@ class StudentsSearch extends Students
     {
         return [
             [['id', 'student_group_id', 'created_at', 'updated_at'], 'integer'],
-            [['name', 'surName'], 'safe'],
+            [['name', 'surName','studentGroupTitle','student_group_id'], 'safe'],
         ];
     }
 
@@ -58,16 +58,21 @@ class StudentsSearch extends Students
         }
 
         // grid filtering conditions
+        $query -> joinWith('studentGroup');
         $query->andFilterWhere([
             'id' => $this->id,
-            'student_group_id' => $this->student_group_id,
+//            'student_group_id' => $this->student_group_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+
+
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'surName', $this->surName]);
+            ->andFilterWhere(['like', 'surName', $this->surName])
+        ->andFilterWhere(['like', 'student_group.group', $this->student_group_id]);;
 
         return $dataProvider;
     }
+
 }

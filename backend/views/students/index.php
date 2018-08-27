@@ -33,9 +33,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'tableOptions' => [
                     'class' => 'table table-hover table-responsive table-condensed text-center'],
                 'columns' => [
+                        'id',
                     'name',
                     'surName',
-                    'studentGroupTitle',
+//                    'studentGroupTitle',
+                    [
+                        'attribute' => 'student_group_id',
+                        'value' => 'studentGroup.group'
+                    ],
 
                     [
                         'class' => 'yii\grid\ActionColumn',
