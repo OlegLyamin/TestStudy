@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
@@ -19,10 +20,42 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'student_id',
-            'teacher_id',
-            'course_id',
-            'status_id',
+            [
+                'attribute' =>'studentSurName',
+                'content' => function ($data) {
+                    $studentSurName ='';
+                    $studentSurName = Html::a($data->studentSurname,
+                        Url::to(['students/view', 'id' => $data->id]));
+                    return $studentSurName;                            }
+
+            ],//            'teacher_id',
+            [
+                'attribute' =>'courseCourse',
+                'content' => function ($data) {
+                    $courseCourse ='';
+                    $courseCourse = Html::a($data->courseCourse,
+                        Url::to(['course/view', 'id' => $data->id]));
+                    return $courseCourse;                            }
+
+            ],
+            [
+                'attribute' =>'statusTitle',
+                'content' => function ($data) {
+                    $statusTitle = '';
+                    $statusTitle = Html::a($data->id,
+                        Url::to(['student-group/view', 'id' => $data->id]));
+                    return $statusTitle;                            }
+
+            ],
+        [
+               'attribute' =>'teacherSurName',
+               'content' => function ($data) {
+                   $teacherSurname ='';
+                  $teacherSurname = Html::a($data->teacherSurname,
+                      Url::to(['teachers/view', 'id' => $data->id]));
+                   return $teacherSurname;                            }
+
+            ],
             [
                 'attribute' => 'created_at',
                 'value' => function ($model) {

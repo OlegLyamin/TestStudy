@@ -5,6 +5,7 @@ namespace common\models\studentsGroupCourseWithTeacher;
 use common\models\course\Course;
 use common\models\students\Students;
 use common\models\teachers\Teachers;
+use common\models\studentsGroupCourseWithTeacher\StatusSGCWT;
 use Yii;
 
 /**
@@ -45,6 +46,7 @@ class StudentsGroupCourseWithTeacher extends \yii\db\ActiveRecord
             [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => StatusSGCWT::className(), 'targetAttribute' => ['status_id' => 'id']],
             [['student_id'], 'exist', 'skipOnError' => true, 'targetClass' => Students::className(), 'targetAttribute' => ['student_id' => 'id']],
             [['teacher_id'], 'exist', 'skipOnError' => true, 'targetClass' => Teachers::className(), 'targetAttribute' => ['teacher_id' => 'id']],
+
         ];
     }
 
@@ -61,6 +63,11 @@ class StudentsGroupCourseWithTeacher extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('studentsGroupCourseWithTeacher', 'Updated At'),
             'course_id' => Yii::t('studentsGroupCourseWithTeacher', 'Course ID'),
             'status_id' => Yii::t('studentsGroupCourseWithTeacher', 'Status ID'),
+            'title' => Yii::t('studentsGroupCourseWithTeacher', 'Status Title'),
+            'teacherSurname' => Yii::t('studentsGroupCourseWithTeacher', 'Status Title'),
+            'courseCourse' => Yii::t('studentsGroupCourseWithTeacher', 'Course Course'),
+
+
         ];
     }
 
@@ -76,6 +83,10 @@ class StudentsGroupCourseWithTeacher extends \yii\db\ActiveRecord
      * @return \yii\db\ActiveQuery
      */
     public function getStatusSGCWT()
+    {
+        return $this->hasOne(StatusSGCWT::className(), ['id' => 'status_id']);
+    }
+    public function getStatus()
     {
         return $this->hasOne(StatusSGCWT::className(), ['id' => 'status_id']);
     }
@@ -98,12 +109,15 @@ class StudentsGroupCourseWithTeacher extends \yii\db\ActiveRecord
     public function getStudentSurname(){
         return $this->student->surName;
     }
+    public function getCourseCourse(){
+        return $this->course->course;
+    }
     public function getTeacherSurname(){
         return $this->teacher->surName;
     }
-//    public function getStatusSGCWT(){
-//        return $this->status->title;
-//    }
+    public function getStatusTitle() {
+        return $this->status->title;
+    }
     /**
      * {@inheritdoc}
      * @return \common\models\studentsGroupCourseWithTeacher\query\StudentsGroupCourseWithTeacherQuery the active query used by this AR class.
