@@ -13,6 +13,12 @@
                         'url' => '#',
                         'items' => [
                             [
+                                'label' => Yii::t('studentsGroupCourseWithTeacher', 'SGVT'),
+                                'icon' => 'connectdevelop ',
+                                'url' => ['students-group-course-with-teacher/index', 'action' => 'index'],
+
+                            ],
+                            [
                               'label' => Yii::t('students', 'Students'),
                                 'icon' => 'users',
                                 'url' => ['students/index', 'action' => 'index'],
@@ -36,12 +42,7 @@
                                 'url' => ['teachers/index', 'action' => 'index'],
 
                             ],
-                            [
-                                'label' => Yii::t('studentsGroupCourseWithTeacher', 'SGVT'),
-                                'icon' => 'connectdevelop ',
-                                'url' => ['students-group-course-with-teacher/index', 'action' => 'index'],
 
-                            ],
 
 
                         ],

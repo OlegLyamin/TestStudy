@@ -23,7 +23,7 @@ class StudentsController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => ['GET'],
                 ],
             ],
         ];
@@ -67,6 +67,15 @@ class StudentsController extends Controller
         $model = new Students();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash(
+                'success',
+                Yii::t(
+                    'app',
+                    '{whatIs} successfully {action}',[
+                    'whatIs' => Yii::t('students', 'Student'),
+                    'action' => Yii::t('app', 'created')
+                ])
+            );
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -87,6 +96,15 @@ class StudentsController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash(
+                'success',
+                Yii::t(
+                    'app',
+                    '{whatIs} successfully {action}',[
+                    'whatIs' => Yii::t('students', 'Student'),
+                    'action' => Yii::t('app', 'updated')
+                ])
+            );
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -105,7 +123,15 @@ class StudentsController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
+        Yii::$app->session->setFlash(
+            'success',
+            Yii::t(
+                'app',
+                '{whatIs} successfully {action}',[
+                'whatIs' => Yii::t('students', 'Student'),
+                'action' => Yii::t('app', 'deleted')
+            ])
+        );
         return $this->redirect(['index']);
     }
 

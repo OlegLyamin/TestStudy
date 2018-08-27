@@ -12,6 +12,7 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'language' => 'ru-Ru',
+    'name' => 'Test <b>Study</b>',
     'modules' => [],
     'components' => [
         'request' => [
