@@ -66,7 +66,8 @@ class Students extends \yii\db\ActiveRecord
             'student_group_id' => Yii::t('students', 'Student Group ID'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
-            'studentsGroupTitle' => Yii::t('students', 'Student Group Title'),
+            'studentGroupTitle' => Yii::t('students', 'Student Group Title'),
+
         ];
     }
 

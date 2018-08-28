@@ -28,7 +28,16 @@ $this->params['breadcrumbs'][] = $this->title;
                         Url::to(['students/view', 'id' => $data->id]));
                     return $studentSurName;                            }
 
-            ],//            'teacher_id',
+            ],
+            [
+                'attribute' =>'teacherSurName',
+                'content' => function ($data) {
+                    $teacherSurname ='';
+                    $teacherSurname = Html::a($data->teacherSurname,
+                        Url::to(['teachers/view', 'id' => $data->id]));
+                    return $teacherSurname;                            }
+
+            ],
             [
                 'attribute' =>'courseCourse',
                 'content' => function ($data) {
@@ -42,20 +51,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' =>'statusTitle',
                 'content' => function ($data) {
                     $statusTitle = '';
-                    $statusTitle = Html::a($data->id,
-                        Url::to(['student-group/view', 'id' => $data->id]));
                     return $statusTitle;                            }
 
             ],
-        [
-               'attribute' =>'teacherSurName',
-               'content' => function ($data) {
-                   $teacherSurname ='';
-                  $teacherSurname = Html::a($data->teacherSurname,
-                      Url::to(['teachers/view', 'id' => $data->id]));
-                   return $teacherSurname;                            }
 
-            ],
             [
                 'attribute' => 'created_at',
                 'value' => function ($model) {

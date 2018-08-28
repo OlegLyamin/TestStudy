@@ -72,7 +72,7 @@ class StudentsController extends Controller
                 Yii::t(
                     'app',
                     '{whatIs} successfully {action}',[
-                    'whatIs' => Yii::t('students', 'Student'),
+                    'whatIs' => Yii::t('app', 'Student'),
                     'action' => Yii::t('app', 'created')
                 ])
             );
@@ -101,7 +101,7 @@ class StudentsController extends Controller
                 Yii::t(
                     'app',
                     '{whatIs} successfully {action}',[
-                    'whatIs' => Yii::t('students', 'Student'),
+                    'whatIs' => Yii::t('app', 'Student'),
                     'action' => Yii::t('app', 'updated')
                 ])
             );
@@ -128,7 +128,7 @@ class StudentsController extends Controller
             Yii::t(
                 'app',
                 '{whatIs} successfully {action}',[
-                'whatIs' => Yii::t('students', 'Student'),
+                'whatIs' => Yii::t('app', 'Student'),
                 'action' => Yii::t('app', 'deleted')
             ])
         );

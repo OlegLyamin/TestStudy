@@ -9,7 +9,10 @@ return [
     'Create Course' => 'Добавить курс',
     'ID' => 'Номер',
     'Student ID' => 'Студент',
-    'Course ID' => 'Курс',
+    'Student Sur Name' => 'Фамилия студента',
+    'Course Course' => 'Курс',
+    'Status Title' => 'Статус',
+    'Teacher Sur Name' => 'Фамилия преподавателя',
     'Status ID' => 'Статус',
     'Deadline' => 'Дата завершения',
     'Date Of Issue' => 'Дата начала',
@@ -17,7 +20,8 @@ return [
     'Teacher ID' => 'Преподаватель',
     'Create StudentsGroupCourseWithTeacher' => 'Назначить курсы',
     'Create Students Group Course With Teacher' => 'Назначение курсов',
-    'Students Group Course With Teachers' => 'Занятия'
+    'Students Group Course With Teachers' => 'Занятия',
+    'Course ID' => 'Курс'
 
 
 ];

@@ -97,18 +97,22 @@ class StudentsGroupCourseWithTeacher extends \yii\db\ActiveRecord
             'id' => Yii::t('studentsGroupCourseWithTeacher', 'ID'),
             'student_id' => Yii::t('studentsGroupCourseWithTeacher', 'Student ID'),
             'teacher_id' => Yii::t('studentsGroupCourseWithTeacher', 'Teacher ID'),
-            'created_at' => Yii::t('studentsGroupCourseWithTeacher', 'Created At'),
-            'updated_at' => Yii::t('studentsGroupCourseWithTeacher', 'Updated At'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
             'course_id' => Yii::t('studentsGroupCourseWithTeacher', 'Course ID'),
             'status_id' => Yii::t('studentsGroupCourseWithTeacher', 'Status ID'),
             'title' => Yii::t('studentsGroupCourseWithTeacher', 'Status Title'),
-            'teacherSurname' => Yii::t('studentsGroupCourseWithTeacher', 'Status Title'),
+            'teacherSurname' => Yii::t('studentsGroupCourseWithTeacher', 'Teacher Surname'),
             'courseCourse' => Yii::t('studentsGroupCourseWithTeacher', 'Course Course'),
             'deadlineView' => Yii::t('studentsGroupCourseWithTeacher', 'Deadline'),
             'deadline' => Yii::t('studentsGroupCourseWithTeacher', 'Deadline'),
             'dateOfIssueView' => Yii::t('studentsGroupCourseWithTeacher', 'Date Of Issue View'),
             'date_of_issue' => Yii::t('studentsGroupCourseWithTeacher', 'Date Of Issue'),
             'studentsGroupCourseWithTeacher' => Yii::t('studentsGroupCourseWithTeacher', 'Students Group Course With Teachers'),
+            'studentSurName' => Yii::t('studentsGroupCourseWithTeacher', 'Student Sur Name'),
+            'teacherSurName' => Yii::t('studentsGroupCourseWithTeacher', 'Teacher Sur Name'),
+            'statusTitle' => Yii::t('studentsGroupCourseWithTeacher', 'Status Title')
+
 
 
 

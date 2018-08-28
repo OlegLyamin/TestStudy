@@ -12,6 +12,7 @@ return [
     'Name' => 'Имя',
     'Sur Name' => 'Фамилия',
     'Student Group ID' => 'Номер группы',
+    'Student Group Title' => 'Группа',
     'Course ID' => 'Курс',
     'Update Students: {name}' => 'Изменение студента: {name}',
     ];
