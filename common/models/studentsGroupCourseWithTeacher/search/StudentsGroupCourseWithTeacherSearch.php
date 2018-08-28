@@ -21,8 +21,7 @@ class StudentsGroupCourseWithTeacherSearch extends StudentsGroupCourseWithTeache
     {
         return [
             [['id', 'created_at', 'updated_at'], 'integer'],
-            [['student_id', 'teacher_id', 'course_id','status_id','deadline','date_of_issue'], 'safe'],
-
+            [['student_id', 'teacher_id', 'course_id', 'status_id', 'deadline', 'date_of_issue'], 'safe'],
 
 
         ];
@@ -63,13 +62,10 @@ class StudentsGroupCourseWithTeacherSearch extends StudentsGroupCourseWithTeache
 
 
         // grid filtering conditions
-        $query -> joinWith('student');
-        $query -> joinWith('teacher');
-        $query -> joinWith('course');
-        $query -> joinWith('statusSGCWT');
-
-
-
+        $query->joinWith('student');
+        $query->joinWith('teacher');
+        $query->joinWith('course');
+        $query->joinWith('statusSGCWT');
 
 
         $query->andFilterWhere([
@@ -102,16 +98,9 @@ class StudentsGroupCourseWithTeacherSearch extends StudentsGroupCourseWithTeache
 //        }
 
 
-
 //        if ($this->birthDate) {
 //            $query->andFilterWhere(['like', 'birthDate', parent::currentDateTimestamp($this->birthDate)]);
 //        }
-
-
-
-
-
-
 
 
         return $dataProvider;
